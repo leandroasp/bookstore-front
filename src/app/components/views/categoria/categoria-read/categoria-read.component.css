@@ -17,3 +17,11 @@ title h1 {
 table {
   width: 100%;
 }
+
+td i {
+  color: #000;
+}
+
+button {
+  margin-bottom: .8rem;
+}
