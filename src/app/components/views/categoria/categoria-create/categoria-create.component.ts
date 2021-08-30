@@ -10,9 +10,9 @@ import { CategoriaService } from "../categoria.service";
 })
 export class CategoriaCreateComponent implements OnInit {
   categoria: Categoria = {
-    nome: '',
-    descricao: ''
-  }
+    nome: "",
+    descricao: "",
+  };
 
   constructor(private service: CategoriaService, private router: Router) {}
 
@@ -20,14 +20,19 @@ export class CategoriaCreateComponent implements OnInit {
 
   create(): void {
     this.service.create(this.categoria).subscribe(
-      resposta => {
-        this.router.navigate(['categorias'])
-        this.service.mensagem('Categoria criada com sucesso')
-      }, 
-      err => {
-        for (let i = 0; i< err.error.errors.length; i++) {
-          this.service.mensagem(err.error.errors[i].message)
+      (resposta) => {
+        this.router.navigate(["categorias"]);
+        this.service.mensagem("Categoria criada com sucesso");
+      },
+      (err) => {
+        if (err.error.errors.length > 0) {
+          this.service.mensagem(err.error.errors[0].message);
         }
-      })
+      }
+    );
+  }
+
+  cancel(): void {
+    this.router.navigate(["categorias"]);
   }
 }
