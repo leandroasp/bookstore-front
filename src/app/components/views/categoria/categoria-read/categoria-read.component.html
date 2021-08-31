@@ -5,7 +5,7 @@
 
   <button
     mat-raised-button
-    (click)="navegarParaCategoriaCreate()"
+    routerLink="create"
     color="primary"
     class="mat-elevation-z8"
   >
@@ -13,7 +13,7 @@
   </button>
 
   <table mat-table [dataSource]="categorias" class="table mat-elevation-z8">
-    <!-- Position Column -->
+    <!-- Position Column -->routerLink
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Id</th>
       <td mat-cell *matCellDef="let row">{{ row.id }}</td>
@@ -35,7 +35,9 @@
     <ng-container matColumnDef="livros">
       <th mat-header-cell *matHeaderCellDef>Livros</th>
       <td mat-cell *matCellDef="let row">
-        <a href=""><i class="material-icons">book</i></a>
+        <a routerLink="{{ row.id }}/livros">
+          <i class="material-icons">book</i>
+        </a>
       </td>
     </ng-container>
 
