@@ -35,7 +35,8 @@ export class CategoriaUpdateComponent implements OnInit {
   update(): void {
     this.service.update(this.categoria).subscribe(
       (resposta) => {
-        this.router.navigate([`categorias/update/${this.categoria.id}`]);
+        //this.router.navigate([`categorias/update/${this.categoria.id}`]);
+        this.router.navigate(['categorias']);
         this.service.mensagem("Categoria atualizada com sucesso");
       },
       (err) => {

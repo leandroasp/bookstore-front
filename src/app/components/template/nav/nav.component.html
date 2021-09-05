@@ -1,6 +1,12 @@
 <mat-sidenav-container class="container">
   <mat-sidenav mode="side" opened>
-    <mat-nav-list>
+    <mat-nav-list *ngIf="!showMenu">
+      <a routerLink="/login" mat-list-item>
+        <i class="material-icons">login</i>
+        Login
+      </a>
+    </mat-nav-list>
+    <mat-nav-list *ngIf="showMenu">
       <a routerLink="" mat-list-item>
         <i class="material-icons">home</i>
         Home
@@ -9,11 +15,14 @@
         <i class="material-icons">menu_book</i>
         Categorias
       </a>
+      <a routerLink="/exemplos" mat-list-item>
+        <i class="material-icons">face</i>
+        Exemplos
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet>
-        
     </router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

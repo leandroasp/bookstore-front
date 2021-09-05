@@ -1,0 +1,16 @@
+<form action="">
+    <h1>LOGIN</h1>
+
+    <mat-form-field class="form">
+        <mat-label>E-mail</mat-label>
+        <input matInput [(ngModel)]="usuario.email" type="text" name="email" placeholder="user@email.com">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Senha</mat-label>
+        <input matInput [(ngModel)]="usuario.senha" type="password" name="senha" placeholder="">
+    </mat-form-field>
+    
+    <div class="buttons">
+        <button (click)="logar()" mat-raised-button color="primary" class="mat-elevation-z8">Enviar</button>
+    </div>
+</form>

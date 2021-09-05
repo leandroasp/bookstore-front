@@ -1,63 +1,52 @@
-import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
+import { LOCALE_ID, NgModule } from "@angular/core";
+import { registerLocaleData } from '@angular/common';
+import ptBR from '@angular/common/locales/pt';
 
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatSidenavModule } from "@angular/material/sidenav";
-import { MatListModule } from "@angular/material/list";
-import { MatIconModule } from "@angular/material/icon";
-import { MatCardModule } from "@angular/material/card";
-import { MatTableModule } from "@angular/material/table";
+import { HomeModule } from "./components/views/home/home.module";
+import { LivroModule } from "./components/views/livro/livro.module";
+import { TemplateModule } from "./components/template/template.module";
+import { AppRoutingModule } from "./app-routing.module";
+
+import { AppComponent } from "./app.component";
+import { ExemplosComponent } from './components/views/exemplos/exemplos.component';
+
+import { CamelCasePipe } from './camel-case.pipe';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { LoginComponent } from './components/views/login/login.component';
+import { FormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { FormsModule } from "@angular/forms";
+import { MatTableModule } from "@angular/material/table";
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { HeaderComponent } from "./components/template/header/header.component";
-import { FooterComponent } from "./components/template/footer/footer.component";
-import { NavComponent } from "./components/template/nav/nav.component";
-import { HomeComponent } from "./components/views/home/home.component";
-import { CategoriaReadComponent } from "./components/views/categoria/categoria-read/categoria-read.component";
-import { CategoriaCreateComponent } from './components/views/categoria/categoria-create/categoria-create.component';
-import { CategoriaDeleteComponent } from './components/views/categoria/categoria-delete/categoria-delete.component';
-import { CategoriaUpdateComponent } from './components/views/categoria/categoria-update/categoria-update.component';
-import { LivroReadAllComponent } from './components/views/livro/livro-read-all/livro-read-all.component';
+registerLocaleData(ptBR, 'pt-BR');
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    NavComponent,
-    HomeComponent,
-    CategoriaReadComponent,
-    CategoriaCreateComponent,
-    CategoriaDeleteComponent,
-    CategoriaUpdateComponent,
-    LivroReadAllComponent,
+    ExemplosComponent,
+    CamelCasePipe,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatCardModule,
-    MatTableModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
+    TemplateModule,
+    HomeModule,
+    LivroModule,
+    FormsModule,
     MatSnackBarModule,
-    HttpClientModule,
-    FormsModule
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

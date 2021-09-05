@@ -23,6 +23,11 @@ export class CategoriaDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoria.id = this.route.snapshot.paramMap.get("id")!;
+    // this.route.params.subscribe(
+    //   a => {
+    //     this.categoria.id = a['id'];
+    //   }
+    // )
     this.findById();
   }
 

@@ -3,4 +3,52 @@
   <mat-card-subtitle class="subtitle">
     Sistema para exemplificar um CRUD usando Angular e Spring Boot
   </mat-card-subtitle>
+  <p
+    [textContent]="temp"
+    [style.background-color]="temp == 'ok' ? 'yellow' : ''"
+    [class.ok]="temp == 'ok'"
+    (click)="temp = 'ok'"
+  ></p>
+
+  <p [style.margin-bottom]="'20px'">
+    <input type="text" [value]="temp" (keyup)="onKeyUp($event)" />
+
+    <input type="text" [value]="temp" (input)="temp = field.value" #field />
+
+    <input type="text" [ngModel]="temp" (ngModelChange)="temp = $event" />
+
+    <input type="text" [(ngModel)]="temp" />
+  </p>
+
+  <app-home2
+    #domElement
+    [nome]="temp"
+    (eventoNovo)="alert('Isso vai ser destruido')"
+    *ngIf="!destroy"
+  >Aqui é o conteúdo no lugar de ng-content</app-home2>
+
+  <ul>
+    <li *ngFor="let curso of cursos; index as i; first as isFirst">
+      {{ i + 1 }}. {{ curso }} <span *ngIf="isFirst">(primeiro)</span>
+    </li>
+  </ul>
+
+  <button
+    [ngClass]="{
+      off: !clicado,
+      on: clicado
+    }"
+    [ngStyle]="{
+      color: (clicado ? 'green' : 'red')
+    }"
+    (click)="onClick()"
+  >
+    Me click
+  </button>
+  <p diretivaTeste="red" defaultColor="blue" *ngIf="clicado">
+    {{ objeto.nome }} - {{ objeto.endereco.rua }} - {{ objeto.telefone?.celular }}
+  </p>
+  <p *ngElse="clicado">
+    Foi clicado - ngElse é uma diretiva criada
+  </p>
 </mat-card>

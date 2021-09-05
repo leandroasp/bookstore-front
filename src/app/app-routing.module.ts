@@ -1,36 +1,34 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { CategoriaCreateComponent } from "./components/views/categoria/categoria-create/categoria-create.component";
-import { CategoriaDeleteComponent } from "./components/views/categoria/categoria-delete/categoria-delete.component";
-import { CategoriaReadComponent } from "./components/views/categoria/categoria-read/categoria-read.component";
-import { CategoriaUpdateComponent } from "./components/views/categoria/categoria-update/categoria-update.component";
+import { AuthGuard } from "./components/guards/auth-guard";
+import { CategoriaGuard } from "./components/guards/categoria-guard";
+import { ExemplosComponent } from "./components/views/exemplos/exemplos.component";
 import { HomeComponent } from "./components/views/home/home.component";
-import { LivroReadAllComponent } from "./components/views/livro/livro-read-all/livro-read-all.component";
+import { LoginComponent } from "./components/views/login/login.component";
 
 const routes: Routes = [
   {
     path: "",
     component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "login",
+    component: LoginComponent,
   },
   {
     path: "categorias",
-    component: CategoriaReadComponent,
+    loadChildren: () =>
+      import("./components/views/categoria/categoria.module").then(
+        (m) => m.CategoriaModule
+      ),
+    canActivate: [AuthGuard],
+    canActivateChild: [CategoriaGuard],
   },
   {
-    path: "categorias/create",
-    component: CategoriaCreateComponent,
-  },
-  {
-    path: "categorias/delete/:id",
-    component: CategoriaDeleteComponent,
-  },
-  {
-    path: "categorias/update/:id",
-    component: CategoriaUpdateComponent,
-  },
-  {
-    path: "categorias/:id_cat/livros",
-    component: LivroReadAllComponent,
+    path: "exemplos",
+    component: ExemplosComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../views/login/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  showMenu: boolean = false;
 
-  constructor() { }
+  constructor(private authSevice: AuthService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.authSevice.userLoged.subscribe((show) => (this.showMenu = show));
   }
-
 }
